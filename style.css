@@ -243,9 +243,43 @@ ul { padding-left: 18px; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(30,136,255,0.1); }
 .full-btn { width: 100%; }
 .mini-note { margin-top: 12px; font-size: 12px; color: #6b7280; line-height: 1.5; }
-.site-footer { background: #062f5a; padding: 22px 0; }
-.footer-wrap { text-align: center; }
-.footer-wrap p { color: #fff; font-size: 14px; }
+.site-footer {
+  position: relative;
+  padding: 28px 0;
+  background:
+    linear-gradient(rgba(6, 47, 90, 0.92), rgba(4, 31, 60, 0.94)),
+    url('Website2.jpeg') center center / cover no-repeat;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.10), transparent 35%);
+  pointer-events: none;
+}
+.site-footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+}
+.footer-wrap {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.footer-wrap p {
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
 .whatsapp-float {
   position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
   background: linear-gradient(135deg, #25D366, #1ebe5d); color: #fff; border-radius: 50%;
