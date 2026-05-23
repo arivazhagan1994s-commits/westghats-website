@@ -24,7 +24,13 @@
         </div>
       </div>
 
-      <nav class="nav-menu">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-menu" id="siteNav">
         <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
         <a href="#services"><i class="fa-solid fa-truck-fast"></i> Services</a>
         <a href="#industries"><i class="fa-solid fa-industry"></i> Industries</a>
@@ -60,17 +66,14 @@
             <div class="icon-wrap icon-blue"><i class="fa-solid fa-snowflake"></i></div>
             <h3>Temperature Controlled Logistics</h3>
           </div>
-
           <div class="highlight-card">
             <div class="icon-wrap icon-green"><i class="fa-solid fa-shield-halved"></i></div>
             <h3>Safe & Reliable Deliveries</h3>
           </div>
-
           <div class="highlight-card">
             <div class="icon-wrap icon-blue"><i class="fa-solid fa-clock"></i></div>
             <h3>On Time Every Time</h3>
           </div>
-
           <div class="highlight-card">
             <div class="icon-wrap icon-green"><i class="fa-solid fa-chart-line"></i></div>
             <h3>Efficient Supply Chain Solutions</h3>
@@ -213,7 +216,6 @@
         <h3>Our Vision</h3>
         <p>To become one of South India’s most trusted and efficient supply chain partners by delivering innovative, reliable, and scalable logistics solutions.</p>
       </div>
-
       <div class="card info-card mission-card">
         <h3>Our Mission</h3>
         <p>To empower businesses through integrated supply chain solutions that improve operational efficiency, reduce logistics complexity, and create long-term value.</p>
@@ -240,7 +242,6 @@
             <li>Kannur</li>
           </ul>
         </div>
-
         <div class="card coverage-card">
           <h3>Tamil Nadu</h3>
           <ul>
@@ -250,7 +251,6 @@
             <li>Madurai</li>
           </ul>
         </div>
-
         <div class="card coverage-card">
           <h3>Karnataka</h3>
           <ul>
@@ -259,7 +259,6 @@
             <li>Mangaluru</li>
           </ul>
         </div>
-
         <div class="card coverage-card office-card">
           <h3>Branch Office</h3>
           <p><strong>Coimbatore Branch</strong></p>
@@ -289,7 +288,6 @@
         <span class="section-tag">Get in Touch</span>
         <h2>Let’s move your business forward</h2>
         <p>Reach out for transportation, cold-chain solutions, warehousing support, and customized logistics planning.</p>
-
         <div class="contact-details">
           <p><strong>Head Office:</strong><br>Building No. 9 / 49/A, Maradu,<br>Maritpuram, Maradu, Ernakulam, Kerala</p>
           <p><strong>Phone:</strong> +91 8891092337</p>
@@ -317,7 +315,7 @@
             <textarea id="message" rows="5" placeholder="Tell us about your requirement" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary full-btn">Send Inquiry</button>
-          <p class="mini-note">Tip: If you want Google Form embed, replace this form block with your iframe code.</p>
+          <p class="mini-note">Ready for client demo. Replace this form with Google Form embed later if needed.</p>
         </form>
       </div>
     </div>
@@ -341,7 +339,7 @@
 
     const reveals = document.querySelectorAll('.reveal');
     function revealOnScroll() {
-      const triggerBottom = window.innerHeight * 0.88;
+      const triggerBottom = window.innerHeight * 0.9;
       reveals.forEach((item) => {
         const boxTop = item.getBoundingClientRect().top;
         if (boxTop < triggerBottom) item.classList.add('active');
@@ -349,6 +347,32 @@
     }
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+
+    const menuToggle = document.getElementById('menuToggle');
+    const siteNav = document.getElementById('siteNav');
+    const navLinks = siteNav.querySelectorAll('a');
+
+    function closeMenu() {
+      menuToggle.classList.remove('active');
+      siteNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.classList.toggle('menu-open', isOpen);
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
   </script>
 </body>
 </html>
